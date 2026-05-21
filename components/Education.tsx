@@ -1,6 +1,5 @@
 import { SectionLabel } from "./About";
 import ScrollReveal from "./ScrollReveal";
-import { BookOpen, Calendar } from "lucide-react";
 
 const courses = [
   "Data Structures and Algorithms",
@@ -20,76 +19,70 @@ const involvements = [
 
 export default function Education() {
   return (
-    <section id="education" className="py-24 px-6 bg-bg-secondary/40">
+    <section id="education" className="py-4 px-6">
       <div className="max-w-5xl mx-auto">
-        <ScrollReveal><SectionLabel>Education</SectionLabel></ScrollReveal>
+        <ScrollReveal>
+          <div className="rounded-2xl border border-p-border bg-p-card p-6 sm:p-8"
+            style={{ boxShadow: "0 2px 16px var(--shine)" }}>
 
-        <ScrollReveal delay={100}>
-        <div className="mt-12">
-          <div className="card-hover rounded-2xl bg-bg-card border border-bg-border p-8 md:p-10">
-            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-              {/* Left: school info */}
-              <div className="flex gap-5 items-start">
-                {/* MIT emblem */}
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#A31F34] to-[#8B1A2B] flex items-center justify-center flex-shrink-0 shadow-lg">
-                  <span className="text-white font-bold text-lg tracking-tight font-mono">
-                    MIT
+            <SectionLabel>Education</SectionLabel>
+
+            <div className="mt-5 flex flex-col sm:flex-row sm:items-start gap-5">
+              {/* MIT logo */}
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md"
+                style={{ background: "linear-gradient(135deg, #A31F34, #7a1827)" }}>
+                <span className="text-white font-bold text-sm tracking-tight font-mono">MIT</span>
+              </div>
+
+              {/* Info */}
+              <div className="flex-1">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1">
+                  <div>
+                    <h3 className="font-bold text-p-text text-base leading-snug">
+                      Massachusetts Institute of Technology
+                    </h3>
+                    <p className="text-p-muted text-sm mt-0.5">
+                      B.S. in Computer Science and Engineering &amp; Mathematics
+                    </p>
+                  </div>
+                  <span className="font-mono text-xs text-p-sub whitespace-nowrap">
+                    Sep 2025 — Present
                   </span>
                 </div>
-                <div>
-                  <h3 className="text-xl font-bold text-text-primary">
-                    Massachusetts Institute of Technology
-                  </h3>
-                  <p className="text-text-secondary text-sm mt-1">
-                    B.S. in Computer Science and Engineering &amp; Mathematics
-                  </p>
+
+                <div className="mt-5 grid sm:grid-cols-2 gap-5">
+                  <div>
+                    <p className="text-xs font-semibold text-p-sub uppercase tracking-widest mb-3">
+                      Coursework
+                    </p>
+                    <ul className="space-y-1.5">
+                      {courses.map((c) => (
+                        <li key={c} className="flex items-center gap-2.5 text-xs text-p-muted">
+                          <span className="w-1 h-1 rounded-full flex-shrink-0"
+                            style={{ background: "var(--accent)" }} />
+                          {c}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-p-sub uppercase tracking-widest mb-3">
+                      Involvements
+                    </p>
+                    <ul className="space-y-1.5">
+                      {involvements.map((i) => (
+                        <li key={i} className="flex items-center gap-2.5 text-xs text-p-muted">
+                          <span className="w-1 h-1 rounded-full flex-shrink-0"
+                            style={{ background: "var(--teal)" }} />
+                          {i}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-              </div>
-
-              {/* Right: date */}
-              <div className="flex items-center gap-2 text-text-muted text-sm font-mono whitespace-nowrap">
-                <Calendar size={13} />
-                Sep 2025 — Present
-              </div>
-            </div>
-
-            {/* Divider */}
-            <div className="my-7 h-px bg-bg-border" />
-
-            {/* Coursework + Involvements */}
-            <div className="grid sm:grid-cols-2 gap-8">
-              <div>
-                <p className="flex items-center gap-2 text-xs font-semibold text-text-muted uppercase tracking-widest mb-4">
-                  <BookOpen size={12} />
-                  Relevant Coursework
-                </p>
-                <ul className="space-y-2">
-                  {courses.map((c) => (
-                    <li key={c} className="flex items-center gap-2.5 text-sm text-text-secondary">
-                      <span className="w-1 h-1 rounded-full bg-accent-blue flex-shrink-0" />
-                      {c}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <p className="flex items-center gap-2 text-xs font-semibold text-text-muted uppercase tracking-widest mb-4">
-                  <span className="text-base leading-none">⚽</span>
-                  Involvements
-                </p>
-                <ul className="space-y-2">
-                  {involvements.map((i) => (
-                    <li key={i} className="flex items-center gap-2.5 text-sm text-text-secondary">
-                      <span className="w-1 h-1 rounded-full bg-accent-teal flex-shrink-0" />
-                      {i}
-                    </li>
-                  ))}
-                </ul>
               </div>
             </div>
           </div>
-        </div>
         </ScrollReveal>
       </div>
     </section>

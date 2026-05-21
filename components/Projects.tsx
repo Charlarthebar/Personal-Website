@@ -1,143 +1,117 @@
 import { SectionLabel } from "./About";
 import ScrollReveal from "./ScrollReveal";
-import { Github, ExternalLink } from "lucide-react";
+import { Github } from "lucide-react";
 
 interface Project {
+  num: string;
   title: string;
-  subtitle: string;
   description: string;
   tags: string[];
   date: string;
-  github?: string;
-  link?: string;
   highlight?: string;
-  accent: string;
+  github?: string;
+  accentColor: string;
 }
 
 const projects: Project[] = [
   {
+    num: "#001",
     title: "ShockTest",
-    subtitle: "Live Polymarket Trading Signal System",
     description:
-      "Built a live Polymarket trading-signal system detecting probability shocks across ~1,069 markets and evaluating mean reversion at 1h, 6h, and 24h horizons. Backtested a fade strategy with a 59.9% win rate across 1,337 detected shocks.",
-    tags: ["Python", "TypeScript", "Next.js", "MongoDB", "FastAPI"],
+      "Live Polymarket trading-signal system detecting probability shocks across ~1,069 markets. Backtested a fade strategy with a 59.9% win rate across 1,337 detected shocks using interval-based shock detection.",
+    tags: ["Python", "TypeScript", "Next.js", "MongoDB"],
     date: "Mar 2026",
-    highlight: "59.9% win rate across 1,337 shocks",
-    accent: "#6366f1",
+    highlight: "59.9% win rate · 1,337 shocks",
     github: "https://github.com/Charlarthebar",
+    accentColor: "#6366f1",
   },
   {
+    num: "#002",
     title: "CogniScan",
-    subtitle: "Cognitive Assessment App",
     description:
-      "Developed a Python/Kivy cognitive-assessment app with standardized neuropsychological tasks to help physicians screen for dementia-related impairment. Collaborated with an MD–PhD student on task design and scoring; piloted in medical practices.",
-    tags: ["Python", "Kivy", "Data Analysis", "Clinical"],
+      "Python/Kivy cognitive-assessment app with standardized neuropsychological tasks to help physicians screen for dementia-related impairment. Piloted in medical practices with an MD–PhD collaborator.",
+    tags: ["Python", "Kivy", "Data Analysis"],
     date: "Dec 2022 – Nov 2024",
-    highlight: "Published in NHSJS · Piloted in medical practices",
-    accent: "#14b8a6",
+    highlight: "Published · Piloted clinically",
     github: "https://github.com/Charlarthebar",
+    accentColor: "#14b8a6",
   },
   {
+    num: "#003",
     title: "ShortList.ai",
-    subtitle: "Hiring Market Intelligence MVP",
     description:
-      "Modeled job search as a continuous matching problem using open and filled job data. Engineered ETL pipelines combining BLS OEWS, IRS 990, MA payroll data into a Boston-Cambridge employment database for TAM/SAM analysis.",
-    tags: ["Python", "PostgreSQL", "ETL", "BLS OEWS", "Market Analysis"],
+      "Hiring-market intelligence MVP modeling job search as a continuous matching problem. ETL pipelines combining BLS OEWS, IRS 990, and MA payroll data into a Boston-Cambridge employment database.",
+    tags: ["Python", "PostgreSQL", "ETL"],
     date: "Jan 2026",
-    highlight: "Built at Link Studio · Boston-Cambridge employment DB",
-    accent: "#f59e0b",
+    highlight: "Built at Link Studio",
     github: "https://github.com/Charlarthebar",
+    accentColor: "#f59e0b",
   },
 ];
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 px-6 bg-bg-secondary/40">
+    <section id="projects" className="py-4 px-6">
       <div className="max-w-5xl mx-auto">
-        <ScrollReveal><SectionLabel>Projects</SectionLabel></ScrollReveal>
+        <ScrollReveal>
+          <div className="rounded-2xl border border-p-border bg-p-card p-6 sm:p-8"
+            style={{ boxShadow: "0 2px 16px var(--shine)" }}>
 
-        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {projects.map((p, i) => (
-            <ScrollReveal key={p.title} delay={i * 80}>
-            <div
-              className="card-hover rounded-2xl bg-bg-card border border-bg-border flex flex-col overflow-hidden h-full"
-            >
-              {/* Top accent bar */}
-              <div
-                className="h-1 w-full flex-shrink-0"
-                style={{
-                  background: `linear-gradient(90deg, ${p.accent}, transparent)`,
-                }}
-              />
+            <SectionLabel>Projects</SectionLabel>
 
-              <div className="flex flex-col flex-1 p-6">
-                {/* Header */}
-                <div className="mb-3">
-                  <div className="flex items-start justify-between gap-2 mb-1">
-                    <h3
-                      className="text-lg font-bold leading-tight"
-                      style={{ color: p.accent }}
-                    >
-                      {p.title}
-                    </h3>
-                    <div className="flex gap-2 flex-shrink-0">
-                      {p.github && (
-                        <a
-                          href={p.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-text-muted hover:text-text-secondary transition-colors"
-                          aria-label="GitHub"
-                        >
-                          <Github size={15} />
-                        </a>
+            <div className="mt-5 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {projects.map((p, i) => (
+                <ScrollReveal key={p.num} delay={i * 70}>
+                  <div
+                    className="card-hover rounded-xl border border-p-border bg-p-surface flex flex-col overflow-hidden h-full"
+                  >
+                    {/* Accent top bar */}
+                    <div className="h-[3px]"
+                      style={{ background: `linear-gradient(90deg, ${p.accentColor}, transparent)` }} />
+
+                    <div className="flex flex-col flex-1 p-5">
+                      <div className="flex items-start justify-between gap-2 mb-2">
+                        <div>
+                          <span className="font-mono text-[10px] text-p-sub tracking-widest">{p.num}</span>
+                          <h3 className="font-bold text-sm leading-tight mt-0.5" style={{ color: p.accentColor }}>
+                            {p.title}
+                          </h3>
+                        </div>
+                        {p.github && (
+                          <a href={p.github} target="_blank" rel="noopener noreferrer"
+                            className="text-p-sub hover:text-p-muted transition-colors flex-shrink-0 mt-1">
+                            <Github size={13} />
+                          </a>
+                        )}
+                      </div>
+
+                      <p className="text-xs text-p-muted leading-relaxed flex-1 mb-3">
+                        {p.description}
+                      </p>
+
+                      {p.highlight && (
+                        <div className="mb-3 px-2.5 py-1 rounded-lg text-[11px] font-medium font-mono"
+                          style={{
+                            background: `${p.accentColor}12`,
+                            color: p.accentColor,
+                            border: `1px solid ${p.accentColor}28`,
+                          }}>
+                          ✦ {p.highlight}
+                        </div>
                       )}
-                      {p.link && (
-                        <a
-                          href={p.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-text-muted hover:text-text-secondary transition-colors"
-                          aria-label="Live"
-                        >
-                          <ExternalLink size={15} />
-                        </a>
-                      )}
+
+                      <div className="flex flex-wrap gap-1">
+                        {p.tags.map((t) => (
+                          <span key={t} className="tag text-[10px]">{t}</span>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                  <p className="text-xs text-text-muted font-mono">{p.date}</p>
-                </div>
-
-                <p className="text-sm text-text-secondary leading-relaxed flex-1 mb-4">
-                  {p.description}
-                </p>
-
-                {p.highlight && (
-                  <div
-                    className="mb-4 px-3 py-1.5 rounded-lg text-xs font-medium"
-                    style={{
-                      background: `${p.accent}14`,
-                      color: p.accent,
-                      border: `1px solid ${p.accent}30`,
-                    }}
-                  >
-                    ✦ {p.highlight}
-                  </div>
-                )}
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-1.5 mt-auto">
-                  {p.tags.map((t) => (
-                    <span key={t} className="tag text-[11px]">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
+                </ScrollReveal>
+              ))}
             </div>
-            </ScrollReveal>
-          ))}
-        </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

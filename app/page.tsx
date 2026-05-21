@@ -1,5 +1,5 @@
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
+import ProfileCard from "@/components/ProfileCard";
 import About from "@/components/About";
 import Education from "@/components/Education";
 import Experience from "@/components/Experience";
@@ -10,10 +10,10 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <>
+    <div className="min-h-screen bg-p-bg">
       <Navbar />
-      <main>
-        <Hero />
+      <main className="pb-8">
+        <ProfileCard />
         <About />
         <Education />
         <Experience />
@@ -22,6 +22,6 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }

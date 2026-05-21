@@ -1,107 +1,88 @@
 import { SectionLabel } from "./About";
 import ScrollReveal from "./ScrollReveal";
 
-interface SkillGroup {
-  category: string;
-  items: string[];
-  variant: "blue" | "teal" | "default";
-}
-
-const skillGroups: SkillGroup[] = [
+const groups = [
   {
-    category: "Languages",
-    variant: "blue",
+    label: "Languages",
     items: ["Python", "TypeScript", "JavaScript", "C++", "Java", "HTML / CSS"],
+    variant: "accent",
   },
   {
-    category: "Frameworks & Tools",
+    label: "Frameworks & Tools",
+    items: ["Next.js", "FastMCP", "SQLAlchemy", "Pydantic", "MongoDB", "PostgreSQL", "Linux", "Git", "CI/CD"],
     variant: "teal",
-    items: [
-      "Next.js",
-      "FastMCP",
-      "SQLAlchemy",
-      "Pydantic",
-      "MongoDB",
-      "PostgreSQL",
-      "Linux",
-      "Git",
-      "CI/CD",
-      "Node.js",
-    ],
   },
   {
-    category: "Domains",
-    variant: "default",
-    items: [
-      "LLM Systems",
-      "Multi-agent AI",
-      "Backend Engineering",
-      "Data Pipelines",
-      "Statistical Analysis",
-      "Performance Engineering",
-      "Quantitative Finance",
-    ],
+    label: "Domains",
+    items: ["LLM Systems", "Multi-agent AI", "Backend Engineering", "Data Pipelines", "Statistical Analysis", "Quantitative Finance"],
+    variant: "sub",
   },
 ];
 
-const variantClass: Record<string, string> = {
-  blue: "tag",
-  teal: "tag tag-teal",
-  default:
-    "tag bg-slate-800/50 text-slate-300 border-slate-700 hover:bg-slate-700/50 hover:border-slate-600",
-};
+const awards = [
+  "UAC Outstanding First-Year Student Award",
+  "Excellence in Math",
+  "Cum Laude",
+  "3× VEX Robotics #1 in State",
+  "RI Science Olympiad — 1st (Codebusters)",
+  "USACO Silver",
+  "AP Scholar with Distinction",
+];
+
+function TagGroup({ label, items, variant }: { label: string; items: string[]; variant: string }) {
+  const tagClass =
+    variant === "teal"
+      ? "tag tag-teal"
+      : variant === "sub"
+      ? "tag"
+      : "tag";
+
+  return (
+    <div>
+      <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-p-sub mb-3">
+        {label}
+      </p>
+      <div className="flex flex-wrap gap-1.5">
+        {items.map((item) => (
+          <span key={item} className={tagClass}>{item}</span>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 px-6">
+    <section id="skills" className="py-4 px-6">
       <div className="max-w-5xl mx-auto">
-        <ScrollReveal><SectionLabel>Skills</SectionLabel></ScrollReveal>
+        <ScrollReveal>
+          <div className="rounded-2xl border border-p-border bg-p-card p-6 sm:p-8"
+            style={{ boxShadow: "0 2px 16px var(--shine)" }}>
 
-        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillGroups.map((group, i) => (
-            <ScrollReveal key={group.category} delay={i * 60}>
-            <div
-              className="rounded-2xl bg-bg-card border border-bg-border p-6 h-full"
-            >
-              <p className="skill-category mb-5">{group.category}</p>
-              <div className="flex flex-wrap gap-2">
-                {group.items.map((item) => (
-                  <span
-                    key={item}
-                    className={variantClass[group.variant]}
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
+            <SectionLabel>Skills</SectionLabel>
+
+            <div className="mt-5 grid sm:grid-cols-3 gap-6">
+              {groups.map((g, i) => (
+                <ScrollReveal key={g.label} delay={i * 60}>
+                  <TagGroup {...g} />
+                </ScrollReveal>
+              ))}
             </div>
-            </ScrollReveal>
-          ))}
-        </div>
 
-        {/* Awards row */}
-        <ScrollReveal delay={180}>
-        <div className="mt-8 rounded-2xl bg-bg-card border border-bg-border p-6">
-          <p className="skill-category mb-5">Awards & Recognition</p>
-          <div className="flex flex-wrap gap-2">
-            {[
-              "UAC Outstanding First-Year Student Award",
-              "Excellence in Math",
-              "Cum Laude",
-              "3× VEX Robotics #1 in State",
-              "RI Science Olympiad — 1st Place (Codebusters)",
-              "USACO Silver",
-              "AP Scholar with Distinction",
-            ].map((a) => (
-              <span
-                key={a}
-                className="tag bg-amber-950/30 text-amber-300 border-amber-800/40 hover:bg-amber-950/50"
-              >
-                {a}
-              </span>
-            ))}
+            {/* Awards */}
+            <ScrollReveal delay={200}>
+              <div className="mt-6 pt-5 border-t border-p-border">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-p-sub mb-3">
+                  Awards & Recognition
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {awards.map((a) => (
+                    <span key={a} className="tag tag-amber">{a}</span>
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
           </div>
-        </div>
         </ScrollReveal>
       </div>
     </section>
