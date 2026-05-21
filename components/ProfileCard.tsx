@@ -20,6 +20,10 @@ const badges = [
 export default function ProfileCard() {
   const [imgError, setImgError] = useState(false);
 
+  // Drop your photo at public/images/profile/avatar.jpg (or .png)
+  const AVATAR_SRCS = ["/images/profile/avatar.jpg", "/images/profile/avatar.png", "/images/awards.jpg"];
+  const [srcIdx, setSrcIdx] = useState(0);
+
   return (
     <section className="pt-[88px] pb-6 px-6">
       <div className="max-w-5xl mx-auto">
@@ -34,16 +38,19 @@ export default function ProfileCard() {
               <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border border-p-border">
                 {!imgError ? (
                   <Image
-                    src="/images/awards.jpg"
+                    src={AVATAR_SRCS[srcIdx]}
                     alt="Charles Lai"
                     fill
                     className="object-cover object-top scale-[1.4] origin-top"
                     sizes="96px"
                     priority
-                    onError={() => setImgError(true)}
+                    onError={() => {
+                      if (srcIdx + 1 < AVATAR_SRCS.length) setSrcIdx(srcIdx + 1);
+                      else setImgError(true);
+                    }}
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br"
+                  <div className="w-full h-full flex items-center justify-center"
                     style={{ background: "linear-gradient(135deg, var(--accent), var(--teal))" }}>
                     <span className="text-2xl font-bold font-mono" style={{ color: "var(--accent-fg)" }}>
                       CL

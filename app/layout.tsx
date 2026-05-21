@@ -34,7 +34,7 @@ const themeScript = `
 (function(){
   try {
     var t = localStorage.getItem('cl-theme');
-    var valid = ['dark','terminal','paper','warm'];
+    var valid = ['dark','terminal','paper','warm','soccer'];
     if (t && valid.includes(t)) {
       document.documentElement.setAttribute('data-theme', t);
     } else {

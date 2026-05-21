@@ -1,6 +1,10 @@
+"use client";
+
+import { useState } from "react";
 import { SectionLabel } from "./About";
 import ScrollReveal from "./ScrollReveal";
 import { Github } from "lucide-react";
+import Image from "next/image";
 
 interface Project {
   num: string;
@@ -11,6 +15,7 @@ interface Project {
   highlight?: string;
   github?: string;
   accentColor: string;
+  image?: string;
 }
 
 const projects: Project[] = [
@@ -24,6 +29,7 @@ const projects: Project[] = [
     highlight: "59.9% win rate · 1,337 shocks",
     github: "https://github.com/Charlarthebar",
     accentColor: "#6366f1",
+    image: "/images/projects/shocktest.png",
   },
   {
     num: "#002",
@@ -35,6 +41,7 @@ const projects: Project[] = [
     highlight: "Published · Piloted clinically",
     github: "https://github.com/Charlarthebar",
     accentColor: "#14b8a6",
+    image: "/images/projects/cogniscan.png",
   },
   {
     num: "#003",
@@ -46,8 +53,27 @@ const projects: Project[] = [
     highlight: "Built at Link Studio",
     github: "https://github.com/Charlarthebar",
     accentColor: "#f59e0b",
+    image: "/images/projects/shortlist.png",
   },
 ];
+
+function ProjectImage({ src, alt, accentColor }: { src: string; alt: string; accentColor: string }) {
+  const [err, setErr] = useState(false);
+  if (err) return null;
+  return (
+    <div className="relative w-full h-36 overflow-hidden border-b border-p-border"
+      style={{ background: `${accentColor}0d` }}>
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        className="object-cover object-top"
+        sizes="(max-width: 640px) 100vw, 33vw"
+        onError={() => setErr(true)}
+      />
+    </div>
+  );
+}
 
 export default function Projects() {
   return (
@@ -68,6 +94,11 @@ export default function Projects() {
                     {/* Accent top bar */}
                     <div className="h-[3px]"
                       style={{ background: `linear-gradient(90deg, ${p.accentColor}, transparent)` }} />
+
+                    {/* Optional screenshot */}
+                    {p.image && (
+                      <ProjectImage src={p.image} alt={p.title} accentColor={p.accentColor} />
+                    )}
 
                     <div className="flex flex-col flex-1 p-5">
                       <div className="flex items-start justify-between gap-2 mb-2">

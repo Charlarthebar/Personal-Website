@@ -7,6 +7,7 @@ const themes: { id: Theme; label: string; symbol: string }[] = [
   { id: "terminal", label: "Terminal", symbol: ">_" },
   { id: "paper",    label: "Paper",    symbol: "◻" },
   { id: "warm",     label: "Warm",     symbol: "◐" },
+  { id: "soccer",   label: "Soccer",   symbol: "⚽" },
 ];
 
 export default function ThemeSwitcher({ compact = false }: { compact?: boolean }) {

@@ -2,9 +2,9 @@
 
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 
-export type Theme = "dark" | "terminal" | "paper" | "warm";
+export type Theme = "dark" | "terminal" | "paper" | "warm" | "soccer";
 
-const THEMES: Theme[] = ["dark", "terminal", "paper", "warm"];
+const THEMES: Theme[] = ["dark", "terminal", "paper", "warm", "soccer"];
 const STORAGE_KEY = "cl-theme";
 
 interface ThemeCtx { theme: Theme; setTheme: (t: Theme) => void; }
