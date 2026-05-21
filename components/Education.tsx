@@ -1,4 +1,5 @@
 import { SectionLabel } from "./About";
+import ScrollReveal from "./ScrollReveal";
 import { BookOpen, Calendar } from "lucide-react";
 
 const courses = [
@@ -21,8 +22,9 @@ export default function Education() {
   return (
     <section id="education" className="py-24 px-6 bg-bg-secondary/40">
       <div className="max-w-5xl mx-auto">
-        <SectionLabel>Education</SectionLabel>
+        <ScrollReveal><SectionLabel>Education</SectionLabel></ScrollReveal>
 
+        <ScrollReveal delay={100}>
         <div className="mt-12">
           <div className="card-hover rounded-2xl bg-bg-card border border-bg-border p-8 md:p-10">
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
@@ -88,6 +90,7 @@ export default function Education() {
             </div>
           </div>
         </div>
+        </ScrollReveal>
       </div>
     </section>
   );

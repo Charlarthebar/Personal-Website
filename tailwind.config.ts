@@ -20,6 +20,11 @@ const config: Config = {
           teal: "#14b8a6",
           glow: "rgba(99,102,241,0.15)",
         },
+        text: {
+          primary: "#f8fafc",
+          secondary: "#94a3b8",
+          muted: "#4b5563",
+        },
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],

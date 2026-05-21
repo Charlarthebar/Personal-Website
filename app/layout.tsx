@@ -15,6 +15,10 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+  },
   title: "Charles Lai — Software Engineer & Researcher",
   description:
     "MIT CS + Math student, CSAIL researcher, and varsity soccer player. Building AI/ML systems and backend infrastructure.",

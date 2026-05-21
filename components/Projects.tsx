@@ -1,4 +1,5 @@
 import { SectionLabel } from "./About";
+import ScrollReveal from "./ScrollReveal";
 import { Github, ExternalLink } from "lucide-react";
 
 interface Project {
@@ -53,13 +54,13 @@ export default function Projects() {
   return (
     <section id="projects" className="py-24 px-6 bg-bg-secondary/40">
       <div className="max-w-5xl mx-auto">
-        <SectionLabel>Projects</SectionLabel>
+        <ScrollReveal><SectionLabel>Projects</SectionLabel></ScrollReveal>
 
         <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {projects.map((p) => (
+          {projects.map((p, i) => (
+            <ScrollReveal key={p.title} delay={i * 80}>
             <div
-              key={p.title}
-              className="card-hover rounded-2xl bg-bg-card border border-bg-border flex flex-col overflow-hidden"
+              className="card-hover rounded-2xl bg-bg-card border border-bg-border flex flex-col overflow-hidden h-full"
             >
               {/* Top accent bar */}
               <div
@@ -134,6 +135,7 @@ export default function Projects() {
                 </div>
               </div>
             </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

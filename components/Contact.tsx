@@ -1,12 +1,14 @@
 import { SectionLabel } from "./About";
+import ScrollReveal from "./ScrollReveal";
 import { Mail, Github, Linkedin } from "lucide-react";
 
 export default function Contact() {
   return (
     <section id="contact" className="py-24 px-6 bg-bg-secondary/40">
       <div className="max-w-5xl mx-auto">
-        <SectionLabel>Contact</SectionLabel>
+        <ScrollReveal><SectionLabel>Contact</SectionLabel></ScrollReveal>
 
+        <ScrollReveal delay={100}>
         <div className="mt-12 max-w-xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-text-primary mb-4 leading-snug">
             Let&apos;s build something{" "}
@@ -47,6 +49,7 @@ export default function Contact() {
             />
           </div>
         </div>
+        </ScrollReveal>
       </div>
     </section>
   );

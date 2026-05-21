@@ -1,4 +1,5 @@
 import { SectionLabel } from "./About";
+import ScrollReveal from "./ScrollReveal";
 
 interface SkillGroup {
   category: string;
@@ -54,13 +55,13 @@ export default function Skills() {
   return (
     <section id="skills" className="py-24 px-6">
       <div className="max-w-5xl mx-auto">
-        <SectionLabel>Skills</SectionLabel>
+        <ScrollReveal><SectionLabel>Skills</SectionLabel></ScrollReveal>
 
         <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillGroups.map((group) => (
+          {skillGroups.map((group, i) => (
+            <ScrollReveal key={group.category} delay={i * 60}>
             <div
-              key={group.category}
-              className="rounded-2xl bg-bg-card border border-bg-border p-6"
+              className="rounded-2xl bg-bg-card border border-bg-border p-6 h-full"
             >
               <p className="skill-category mb-5">{group.category}</p>
               <div className="flex flex-wrap gap-2">
@@ -74,10 +75,12 @@ export default function Skills() {
                 ))}
               </div>
             </div>
+            </ScrollReveal>
           ))}
         </div>
 
         {/* Awards row */}
+        <ScrollReveal delay={180}>
         <div className="mt-8 rounded-2xl bg-bg-card border border-bg-border p-6">
           <p className="skill-category mb-5">Awards & Recognition</p>
           <div className="flex flex-wrap gap-2">
@@ -99,6 +102,7 @@ export default function Skills() {
             ))}
           </div>
         </div>
+        </ScrollReveal>
       </div>
     </section>
   );

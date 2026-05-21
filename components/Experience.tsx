@@ -1,4 +1,5 @@
 import { SectionLabel } from "./About";
+import ScrollReveal from "./ScrollReveal";
 
 interface Job {
   company: string;
@@ -56,15 +57,16 @@ export default function Experience() {
   return (
     <section id="experience" className="py-24 px-6">
       <div className="max-w-5xl mx-auto">
-        <SectionLabel>Experience</SectionLabel>
+        <ScrollReveal><SectionLabel>Experience</SectionLabel></ScrollReveal>
 
         <div className="mt-12 relative">
           {/* Vertical line */}
           <div className="absolute left-[7px] top-2 bottom-2 w-[2px] timeline-line hidden sm:block rounded-full opacity-40" />
 
           <div className="space-y-10">
-            {jobs.map((job) => (
-              <div key={job.company} className="sm:pl-10 relative">
+            {jobs.map((job, i) => (
+              <ScrollReveal key={job.company} delay={i * 80}>
+              <div className="sm:pl-10 relative">
                 {/* Dot */}
                 <div
                   className="absolute left-0 top-1.5 w-4 h-4 rounded-full border-2 border-bg-primary hidden sm:block"
@@ -120,6 +122,7 @@ export default function Experience() {
                   </div>
                 </div>
               </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
