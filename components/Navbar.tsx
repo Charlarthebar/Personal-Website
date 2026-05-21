@@ -11,12 +11,28 @@ const links = [
   { label: "Contact", href: "#contact" },
 ];
 
+const sectionIds = links.map((l) => l.href.slice(1));
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 20);
+
+      // Determine which section is in view
+      let current = "";
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 120) {
+          current = id;
+        }
+      }
+      setActive(current);
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -35,18 +51,25 @@ export default function Navbar() {
           href="#"
           className="font-mono text-sm font-semibold text-accent-blue hover:text-indigo-300 transition-colors tracking-wide"
         >
-          cl<span className="text-text-secondary">.</span>dev
+          cl<span className="text-text-muted">.</span>dev
         </a>
 
         {/* Desktop links */}
         <ul className="hidden md:flex items-center gap-7">
-          {links.map((l) => (
-            <li key={l.href}>
-              <a href={l.href} className="nav-link">
-                {l.label}
-              </a>
-            </li>
-          ))}
+          {links.map((l) => {
+            const isActive = active === l.href.slice(1);
+            return (
+              <li key={l.href}>
+                <a
+                  href={l.href}
+                  className={`nav-link ${isActive ? "!text-text-primary" : ""}`}
+                  style={isActive ? { "--nav-link-width": "100%" } as React.CSSProperties : {}}
+                >
+                  {l.label}
+                </a>
+              </li>
+            );
+          })}
           <li>
             <a
               href="/Charles_Lai_Resume.pdf"
